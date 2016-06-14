@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="900dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="2"
+        android:background="@drawable/pro_background">
+        <TableRow
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="产品号:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/goodsNo"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="名    称:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/modelName"
+                android:text=""/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="系    列:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/marketingDivision"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="大    类:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/division"
+                android:text=""/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="POP:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/pop"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="款    式:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/category"
+                android:text=""/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="上市日期:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/eastLaunch"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="支持类型:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/supportStyle"
+                android:text=""/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="性    &#x0020;别:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/gender"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="面    料:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/composition"
+                android:text=""/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="牌价:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/localRp"
+                android:text=""/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="目录页码:"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/directoryPage"
+                android:text=""/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="工艺:"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_span="1"
+                android:gravity="left"
+                android:id="@+id/technology"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="品牌季节:"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_span="1"
+                android:gravity="left"
+                android:id="@+id/brdSeason"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="商品描述:"/>
+            <TextView
+                android:layout_weight="3"
+                android:layout_span="3"
+                android:id="@+id/goodsDesc"/>
+        </TableRow>
+    </TableLayout>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pro_history"/>
+
+
+    <WebView
+        android:id="@+id/charts"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+
+    />
+</LinearLayout>

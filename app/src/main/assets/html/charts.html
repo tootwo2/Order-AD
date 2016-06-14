@@ -1,0 +1,427 @@
+<html>
+<head>
+    <script type="text/javascript" src="file:///android_asset/js/jquery.js"></script>
+    <script type="text/javascript" src="file:///android_asset/js/highcharts.js"></script>
+
+    <style type="text/css">
+        .main{
+            clear:both;
+        }
+        .float-left{
+            float:left;
+        }
+
+        .red-label{
+            display:inline-block;
+            width:  20px;
+            height: 5px;
+            background: red;
+        }
+        .yellow-label{
+            display:inline-block;
+            width:  20px;
+            height: 5px;
+            background: yellow;
+        }
+        .blue-label{
+            display:inline-block;
+            width:  20px;
+            height: 5px;
+            background: blue;
+        }
+        .text-label{
+            padding-left:5px;
+            font-size: x-small;
+            color:blue;
+        }
+
+        .order{
+            color:#FFFFFF;
+            padding-left:15px;
+            padding-top:15px;
+            font-size:large;
+            font-weight:bold;
+            width:27px;
+            height:37px;
+        }
+
+        img{
+            width  : 105px;
+            height : 100px;
+            float:left;
+        }
+        .charts-container{
+            width :  750px;
+            height: 200px;
+        }
+        .charts{
+            width:300px;
+            height: 125px;
+        }
+        .charts-title{
+            width:580px;
+            height: 100px;
+        }
+
+        .item-name{
+            padding-left:50px;
+            font-size:150%;
+            font-weight:900;
+            margin-top:0;
+            padding-top:0;
+            display:inline-block;
+            float:left;
+        }
+        .r-price{
+            padding-left:25px;
+            margin-top:0;
+            padding-top:0;
+            display:inline-block;
+            float:left;
+        }
+        .begin-sale-date{
+            padding-left:25px;
+            margin-top:0;
+            padding-top:0;
+            display:inline-block;
+            float:left;
+        }
+        .circle{
+            float:left;
+            margin-right:30px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background-color:grey;
+            z-index:9;
+            text-align:center;
+            line-height:50px;
+            font-size:x-large;
+            color:#ffffff;
+        }
+
+
+        .circle-focus{
+            background-color:black;
+        }
+        .circle-container{
+            position: absolute;
+            left:30px;
+            bottom:10px;
+        }
+        .font{
+            z-index: 9999;
+            color:#cccccc;
+            position:relative;
+        }
+    </style>
+    <script type="text/javascript">
+
+
+        var mem = 0;
+        var r;
+
+        $(function () {
+            //var newGoodsId = window.myjs.getNewGoodsId();
+            //r = eval("(" + window.myjs.getChartsData(newGoodsId) + ")");
+            r = eval("(" + window.myjs.getChartsData('') + ")");
+            var str = "";
+            for(var i = 0; i < r.length; i++){
+                str += "<div class='circle' id='circle" + i + "' onclick='change(r, " + i + ")' ><div class='font' >" + (i + 1) + "</div></div>";
+            }
+            $(".circle-container").append(str);
+            mem = 0;
+            change(r,mem);
+        });
+
+
+
+function change(r, i){
+    //初始化
+    $(".content").html("");
+    //$(".circle-container").html("");
+
+
+        $(".circle-container > div").each(function(){
+            if(2==$(this).children().length){
+                $(this).children().last().remove();
+
+            }
+        });
+
+    $(".circle-container > div#circle" + i).append("<div class='circle' style='background-color:#000000;position:relative;top:-50px;'></div>");
+
+    r[i].img = "file:///data/data/com.topsports.tootwo2.order/files/"+r[i].itemCode + ".jpg";
+    
+    $(".content").append('<div class="main">'
+                   +    '<div class="float-left charts-container">'
+                   +        '<div class="float-left charts-title"><img itemCode="' + r[i].itemCode + '" src="' + r[i].img+ '" alt="产品图片" onerror="showOtherPic(this)" /><div class="item-name">' + r[i].itemName + '</div><div class="r-price">￥' + r[i].rprice + '</div><div class="begin-sale-date">' + r[i].beginSaleDate + '</div></div>'
+                   +        '<div class="float-left">'
+                   +            '<div id="container' + ((i + 1) + "") + "1" + '" class="charts"></div>'
+                   +        '</div>'
+                   +        '<div class="float-left">'
+                   +            '<div id="container' + ((i + 1) + "") + "2" + '" class="charts"></div>'
+                   +        '</div>'
+                   +    '</div>'
+                   + '</div>');
+    $('#container' + ((i + 1) + "") + '1').highcharts({
+        chart: {type: 'column'},
+        title: { text: ''},
+        xAxis: { categories: ['累计进货量',
+                              '累计销售量']},
+        yAxis: { min: 0, title: { text: '量'}},
+        plotOptions: {column: {pointPadding: 0.2,
+                               borderWidth: 0,
+                               dataLabels:{
+                                    enabled:true, // dataLabels设为true
+                                    style:{
+                                        color:'#D7DEE9'
+                                    }
+                               }
+                              }
+                      },
+        series: [{name: '一个月',data: [Number(r[i].totalInQty1),Number(r[i].totalSaleQty1)],color:"red"},
+                 {name: '二个月',data: [Number(r[i].totalInQty2),Number(r[i].totalSaleQty2)],color:"yellow"},
+                 {name: '三个月',data: [Number(r[i].totalInQty3),Number(r[i].totalSaleQty3)],color:"blue"}],
+        credits: {enabled: false},
+        tooltip:{
+            useHTML:true,
+            formatter:function(){
+                var str = "";
+                str += ("<span style='font-size:75%'>" + this.x + "</span><br />");
+                str += ("<span style='color:" + this.series.color + "'>" + this.series.name + ":</span>");
+                str += this.y;
+                return str;
+                }
+            }
+    });
+
+    var obj = [{name: '一个月',data: [parseInt(Number(r[i].overPerc1) * 10000) / 100,parseInt(Number(r[i].totalDiscount1) * 10000) / 100],color:"red"},
+              {name: '二个月',data: [parseInt(Number(r[i].overPerc2) * 10000) / 100,parseInt(Number(r[i].totalDiscount2) * 10000) / 100],color:"yellow"},
+              {name: '三个月',data: [parseInt(Number(r[i].overPerc3) * 10000) / 100,parseInt(Number(r[i].totalDiscount3) * 10000) / 100],color:"blue"}];
+
+    $('#container' + ((i + 1) + "") + '2').highcharts({
+        chart: {type: 'column'},
+        title: { text: ''},
+        xAxis: { categories: ['售罄率',
+                              '累计折扣']},
+        yAxis: { min: 0, title: { text: '百分比 (%)'}},
+        plotOptions: {column: {pointPadding: 0.2,borderWidth: 0,
+                               dataLabels:{
+                                    enabled:true, // dataLabels设为true
+                                    style:{
+                                        color:'#D7DEE9'
+                                    }
+                               }
+                              }
+                     },
+        //series: [{name: '一个月',data: [parseInt(Number(r[i].overPerc1) * 10000) / 100,parseInt(Number(r[i].totalDiscount1) * 10000) / 100],color:"red"},
+        //         {name: '二个月',data: [parseInt(Number(r[i].overPerc2) * 10000) / 100,parseInt(Number(r[i].totalDiscount2) * 10000) / 100],color:"yellow"},
+        //         {name: '三个月',data: [parseInt(Number(r[i].overPerc3) * 10000) / 100,parseInt(Number(r[i].totalDiscount3) * 10000) / 100],color:"blue"}],
+        series: [{name: '一个月',data: [Math.round(parseInt(Number(r[i].overPerc1) * 10000) / 100),Math.round(parseInt(Number(r[i].totalDiscount1) * 10000) / 100)],color:"red"},
+                 {name: '二个月',data: [Math.round(parseInt(Number(r[i].overPerc2) * 10000) / 100),Math.round(parseInt(Number(r[i].totalDiscount2) * 10000) / 100)],color:"yellow"},
+                 {name: '三个月',data: [Math.round(parseInt(Number(r[i].overPerc3) * 10000) / 100),Math.round(parseInt(Number(r[i].totalDiscount3) * 10000) / 100)],color:"blue"}],
+        credits: {enabled: false},
+        tooltip:{
+            useHTML:true,
+            formatter:function(){
+                var str = "";
+                str += ("<span style='font-size:75%'>" + this.x + "</span><br />");
+                str += ("<span style='color:" + this.series.color + "'>" + this.series.name + ":</span>");
+                for(var i = 0;i<obj.length;i++){
+                    if(obj[i].name == this.series.name){
+                        if(this.x == "售罄率"){
+                            str += (obj[i].data[0] + "%");
+                        }else if(this.x == "累计折扣"){
+                            str += (obj[i].data[1] + "%");
+                        }
+                    }
+
+                }
+
+                return str;
+            }
+        }
+    });
+
+    mem = i;
+}
+    function showOtherPic(obj){
+         obj.src='file:///android_res/drawable/roc.png';
+    }
+
+   </script>
+</head>
+
+<body>
+<!--<div class="main">-->
+
+    <!--<div class="float-left"><div class="order">1</div></div>-->
+    <!--<div class="float-left"><img /></div>-->
+    <!--<div class="float-left charts-container">-->
+        <!--<div class="float-left charts-title">123</div>-->
+        <!--<div class="float-left">-->
+            <!--<div id="container11" class="charts"></div>-->
+
+        <!--</div>-->
+        <!--<div class="float-left">-->
+            <!--<div id="container12" class="charts"></div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="content" style="background-color:yellow;"></div>
+<div class="circle-container">
+</div>
+<script type="text/javascript">
+		//全局变量，触摸开始位置
+		var startX = 0,
+			startY = 0;
+		var isWidthways = 0; //记录横向移动状态
+		var tableTop;
+		var imgContainer;
+		//鼠标按下事件
+		function mouseSatrtFunc(evt){
+			evt.preventDefault();
+			var x = evt.clientX;
+			var y = evt.clientY;
+			//记录触点初始位置
+			startX = x;
+			startY = y;
+		}
+
+		//touchstart事件
+		function touchSatrtFunc(evt) {
+			try {
+				isWidthways = 0;
+				isLengthways = 0;
+				var touch = evt.targetTouches[0]; //获取第一个触点
+				var x = Number(touch.pageX); //页面触点X坐标
+				var y = Number(touch.pageY); //页面触点Y坐标
+				//记录触点初始位置
+				startX = x;
+				startY = y;
+				imgContainer = $(".img-container").offset().left;
+			} catch (e) {
+				console.log('touchSatrtFunc：' + e.message);
+			}
+		}
+
+		//touchmove事件，这个事件无法获取坐标
+		function touchMoveFunc(evt) {
+			try {
+				evt.preventDefault();
+				var touch = evt.targetTouches[0]; //获取第一个触点
+				var x = Number(touch.pageX); //页面触点X坐标
+				var y = Number(touch.pageY); //页面触点Y坐标
+				if(x - startX > 0)
+				$(".img-container").css("left",imgContainer + Math.pow(x - startX,0.75));
+				else if(x - startX < 0)
+				$(".img-container").css("left",imgContainer - Math.pow(0 - (x - startX),0.75));
+				//$(".img-container").css("left",Number($(".img-container").css("left").substr(0,$(".img-container").css("left").length - 2)) + Math.sqrt(x - startX));
+				//判断横向滑动方向
+				if (x - startX > 150) {
+					$(".hint").html("松开换图");
+					$(".hint").fadeIn("fast");
+					isWidthways = -1;
+				} else if (x - startX < -150) {
+					$(".hint").html("松开换图");
+					$(".hint").fadeIn("fast");
+					isWidthways = 1;
+				} else {
+					$(".hint").fadeOut("fast");
+					isWidthways = 0;
+				}
+
+
+			} catch (e) {
+				console.log('touchMoveFunc：' + e.message);
+			}
+		}
+
+
+		//鼠标松开事件
+		function mouseEndFunc(evt) {
+			var x = evt.clientX;
+			var y = evt.clientY;
+			//记录触点初始位置
+			endX = x;
+			endY = y;
+
+			if((endX - startX) < -150 ) {nextPic();}
+			if((endX - startX) > 150 )  {prePic();}
+			else{$(".img-container").animate({left:imgContainer});}
+		}
+
+		//touchend事件
+		function touchEndFunc(evt) {
+			$(".hint").fadeOut("fast");
+			var touch = evt.touches[0]; //获取第一个触点
+			try {
+				if (isWidthways === 1){
+					//向左划事件
+					nextPic();
+				}
+				if(isWidthways === -1){
+					//向右划事件
+					prePic();
+				}else if(isWidthways === 0){
+					$(".img-container").animate({left:imgContainer});
+				}
+			} catch (e) {
+				console.log('touchEndFunc：' + e.message);
+			}
+		}
+
+		//绑定事件
+		function bindEvent() {
+				document.addEventListener('mousedown',mouseSatrtFunc, false);
+				document.addEventListener('mouseup',mouseEndFunc, false);
+				document.addEventListener('touchstart', touchSatrtFunc, false);
+				document.addEventListener('touchmove', touchMoveFunc, false);
+				document.addEventListener('touchend', touchEndFunc, false);
+		}
+
+
+
+		function isTouchDevice() {
+			try {
+				bindEvent(); //绑定事件
+			} catch (e) {
+				console.log("不支持TouchEvent事件！" + e.message);
+			}
+		}
+
+		window.onload = function(){
+			//判断是否支持触摸事件
+			try {
+				bindEvent(); //绑定事件
+			} catch (e) {
+				console.log("不支持TouchEvent事件！" + e.message);
+			}
+		};
+
+		//下一张图片
+		function nextPic(){
+            if(mem < r.length - 1)
+                mem++;
+            else{
+                mem = 0;
+            }
+            change(r,mem);
+		}
+		//上一张图片
+		function prePic(){
+            if(mem > 0)
+                mem--;
+            else{
+                mem = r.length - 1;
+            }
+            change(r,mem);
+
+		}
+
+	</script>
+
+</body>
+</html>

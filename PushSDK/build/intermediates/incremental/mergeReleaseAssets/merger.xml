@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/tootwo2/Github/order-AD/Order/PushSDK/assets"/><source path="/Users/tootwo2/Github/order-AD/Order/PushSDK/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/tootwo2/Github/order-AD/Order/PushSDK/build-types/release/assets"/></dataSet></merger>

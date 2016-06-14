@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="order" ></dbname>
+
+    <version value="28" ></version>
+
+    <list>
+        <mapping class="com.topsports.tootwo2.model.ProductInfo"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductPic"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProConstType"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductComments"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductBIData"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductOrderInfo"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductMinOrderNum"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductPlanInfo"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductOldCompare"></mapping>
+        <mapping class="com.topsports.tootwo2.model.ProductHisTrend"></mapping>
+    </list>
+</litepal>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.topsports.tootwo2.order"
+    android:versionCode="2">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.topsports.tootwo2.app.OrderApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/title"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:replace="android:icon">
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_detail" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail" />
+        <activity
+            android:name=".SearchQtyActivity"
+            android:label="@string/title_activity_search_qty" />
+        <activity android:name=".DetailQtyActivity" />
+
+        <service
+            android:name="com.topsports.tootwo2.service.UpdateIntentService"
+            android:exported="false" />
+        <service
+            android:name="com.topsports.tootwo2.service.ImageSyncService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57352c6f67e58e574b000bb5" />
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="8123f0f23f0611628a9cda9d3a8a1d36" />
+
+        <activity android:name=".UpdateActivity"></activity>
+    </application>
+
+</manifest>

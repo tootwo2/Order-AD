@@ -1,0 +1,57 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <!-- 自定义Listview -->
+    <style name="customProgressBar" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminateDrawable">@drawable/custom_progress_bar</item>
+        <item name="android:layout_width">21dip</item>
+        <item name="android:layout_height">21dip</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="anim_menu_rightsidebar">
+        <item name="android:windowEnterAnimation">@anim/pop_selectionbar_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_selectionbar_out</item>
+    </style>
+
+    <style name="anim_menu_bottombar">
+        <item name="android:windowEnterAnimation">@anim/pop_attrbar_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_attrbar_out</item>
+    </style>
+
+    <style name="rb_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@drawable/rb_font_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/rb_selecter</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">@dimen/activity_card_charge_tv</item>
+    </style>
+
+    <style name="pro_attr_style">
+        <item name="android:textColor">#a2a2a2</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <style name="update_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+    <style name="update_checkbox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:checked">true</item>
+    </style>
+</resources>

@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".SearchActivity"
+    >
+    <item android:id="@+id/action_logout"
+        android:title="注销"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_download"
+        android:title="更新"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_downloadPic"
+        android:title="更新图片"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <!--    <item android:id="@+id/action_downBIData"
+            android:title="更新BI数据"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>-->
+    <!--    <item android:id="@+id/action_downloadBIPic"
+            android:title="更新BI图片"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>-->
+    <item android:id="@+id/action_submit"
+        android:title="提交"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>
